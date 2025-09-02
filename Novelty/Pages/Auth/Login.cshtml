@@ -1,0 +1,50 @@
+﻿@page
+@model Novelty.Pages.Auth.LoginModel
+@{
+	Layout = "_AuthLayout";
+	ViewData["Title"] = "Login";
+}
+
+<div class="auth-card card shadow-sm">
+	<div class="card-body">
+		<div class="text-center mb-4">
+			<div class="auth-logo mb-2">B</div>
+			<h4 class="mb-0">Library Login</h4>
+			<p class="text-muted small">Sign in to manage your book library</p>
+		</div>
+
+		@if (!string.IsNullOrEmpty(Model.ErrorMessage))
+		{
+			<div class="alert alert-danger">@Model.ErrorMessage</div>
+		}
+
+		<form method="post" novalidate>
+			<div class="mb-3">
+				<label class="form-label">Email</label>
+				<input asp-for="Input.Email" class="form-control" />
+				<span class="text-danger" asp-validation-for="Input.Email"></span>
+			</div>
+
+			<div class="mb-3">
+				<label class="form-label">Password</label>
+				<input asp-for="Input.Password" type="password" class="form-control" />
+				<span class="text-danger" asp-validation-for="Input.Password"></span>
+			</div>
+
+			<div class="mb-3 form-check">
+				<input asp-for="Input.RememberMe" class="form-check-input" />
+				<label class="form-check-label">Remember me</label>
+			</div>
+
+			<button type="submit" class="btn btn-primary w-100">Sign In</button>
+		</form>
+
+		<div class="mt-3 text-center">
+			<a asp-page="/Auth/Register">Create an account</a> · <a asp-page="/Landing/Index">Back to landing</a>
+		</div>
+	</div>
+</div>
+
+@section Scripts {
+	<partial name="_ValidationScriptsPartial" />
+}
